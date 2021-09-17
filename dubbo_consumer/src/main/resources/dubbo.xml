@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://code.alibabatech.com/schema/dubbo
+            http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 引用远程服务接口 -->
+    <dubbo:reference id="billService_xml" interface="com.zcode.dubbo.service.BillService">
+        <!--
+            onreturn 事件回调。
+            指示，count完毕后，回调callEventHandler.countReturn()方法
+            callEventHandler对象通过@Component生成Bean
+         -->
+        <dubbo:method name="count" async="true" onreturn="callEventHandler.countReturn"></dubbo:method>
+    </dubbo:reference>
+</beans>
